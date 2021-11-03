@@ -7,8 +7,8 @@ body {
   background-color: gray;
 }
 
-.btn-danger {
-  color: black;
+.btn {
+  color: white;
 }
 
 .modal-content {
@@ -16,5 +16,64 @@ body {
 }
 
 .modal-header {
-  background-color: #DC3545;
+  background-color: #212529;
+  color: white;
+}
+
+.btn-bug {
+  background-color: #1c4b27;
+}
+
+.btn-dark {
+  background-color: #040707;
+}
+
+.btn-dragon {
+  background-color: #448a95;
+}
+.btn-electric {
+  background-color: #e2e32b;
+  color: black;
+}
+.btn-fairy {
+  background-color: #961a45;
+}
+.btn-fighting {
+  background-color: #994025;
+}
+.btn-fire {
+  background-color: #ab1f24;
+}
+.btn-flying {
+  background-color: #4a677d;
+}
+.btn-ghost {
+  background-color: #33336b;
+}
+.btn-grass {
+  background-color: #147b3d;
+}
+.btn-ground {
+  background-color: #a8702d;
+}
+.btn-ice {
+  background-color: #147b3d;
+}
+.btn-normal {
+  background-color: #785660;
+}
+.btn-poison {
+  background-color: #5e2d89;
+}
+.btn-psychic {
+  background-color: #a52a6c;
+}
+.btn-rock {
+  background-color: #48190b;
+}
+.btn-steel {
+  background-color: #60756e;
+}
+.btn-water {
+  background-color: #1552e1;
 }

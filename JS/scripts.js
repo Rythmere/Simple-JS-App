@@ -17,7 +17,45 @@ let pokemonRepository = (function () {
     pokedexEntry.classList.add('group-list-item', 'col-5', 'col-md-4', 'col-lg-4', 'col-xl-4', 'p-2');
     let pokedexButton = document.createElement("button");
     pokedexButton.innerText = pokemon.name;
-    pokedexButton.classList.add("pokemonButton", 'btn-block', "btn-danger");
+    getType(pokemon);
+    pokedexButton.classList.add("pokemonButton", 'btn', 'btn-block');
+    if(pokemon.types[0].type.name === 'grass') {
+      pokedexButton.classList.add("btn-grass");
+    } else if (pokemon.types[0].type.name === 'bug') {
+      pokedexButton.classList.add("btn-bug");
+    } else if (pokemon.types[0].type.name === 'dark') {
+      pokedexButton.classList.add("btn-dark");
+    } else if (pokemon.types[0].type.name === 'dragon') {
+      pokedexButton.classList.add("btn-dragon");
+    } else if (pokemon.types[0].type.name === 'electric') {
+      pokedexButton.classList.add('btn-electric');
+    } else if (pokemon.types[0].type.name === 'fairy') {
+      pokedexButton.classList.add("btn-fairy");
+    } else if (pokemon.types[0].type.name === 'fighting') {
+      pokedexButton.classList.add('btn-fighting');
+    } else if (pokemon.types[0].type.name === 'fire') {
+      pokedexButton.classList.add('btn-fire');
+    } else if (pokemon.types[0].type.name === 'flying') {
+      pokedexButton.classList.add('btn-flying');
+    } else if (pokemon.types[0].type.name === 'ghost') {
+      pokedexButton.classList.add('btn-ghost');
+    } else if (pokemon.types[0].type.name === 'ground') {
+      pokedexButton.classList.add('btn-ground');
+    } else if (pokemon.types[0].type.name === 'ice') {
+      pokedexButton.classList.add('btn-ice');
+    } else if (pokemon.types[0].type.name === 'normal') {
+      pokedexButton.classList.add('btn-normal');
+    } else if (pokemon.types[0].type.name === 'poison') {
+      pokedexButton.classList.add('btn-poison');
+    } else if (pokemon.types[0].type.name === 'psychic') {
+      pokedexButton.classList.add('btn-psychic');
+    } else if (pokemon.types[0].type.name === 'rock') {
+      pokedexButton.classList.add('btn-rock');
+    } else if (pokemon.types[0].type.name === 'steel') {
+      pokedexButton.classList.add('btn-steel');
+    } else if (pokemon.types[0].type.name === 'water') {
+      pokedexButton.classList.add('btn-water');
+    }
     pokedexButton.setAttribute('data-toggle', 'modal');
     pokedexButton.setAttribute('data-target', '#detailsModal');
     buttonEvent(pokedexButton, pokemon);
@@ -64,6 +102,20 @@ let pokemonRepository = (function () {
     });
   }
 
+/* retrieves pokemon type from api */
+
+  function getType(item) {
+    let url = item.detailsUrl;
+    return fetch(url).then(function (response) {
+      return response.json();
+    }).then(function (details) {
+      item.types = details.types;
+    }).then(function () {
+    }).catch(function (e) {
+      console.error(e);
+    });
+  }
+
   /* retrieves pokemon details from api*/
 
   function loadDetails(item) {
@@ -105,7 +157,6 @@ let pokemonRepository = (function () {
   let modalBody = $('.modal-body');
   let modalTitle = $('.modal-title');
   let modalHeader = $('.modal-header');
-
   let types = [];
   pokemon.types.forEach((item, i) => {
       types.push(' ' + pokemon.types[i].type.name);
@@ -120,7 +171,7 @@ let pokemonRepository = (function () {
   modalTitle.empty();
   modalBody.empty();
 
-  let nameElement = $('<h1>' + pokemon.name + '</h1>');
+  let nameElement = $('<h2>' + pokemon.name + '</h2>');
   let imageElementFront = $('<img class="modal-img" style="width:50%">');
   imageElementFront.attr('src', pokemon.imageUrlFront);
   let imageElementBack = $('<img class="modal-img" style="width:50%">');
@@ -173,12 +224,16 @@ search.addEventListener('input', function() {
     loadDetails: loadDetails,
     showLoadingMessage: showLoadingMessage,
     hideLoadingMessage: hideLoadingMessage,
-    buttonEvent: buttonEvent
+    buttonEvent: buttonEvent,
+    getType: getType
   };
 })();
 
 pokemonRepository.loadList().then(function() {
   pokemonRepository.getAll().forEach(function(pokemon) {
-    pokemonRepository.addListItem(pokemon);
+    pokemonRepository.getType(pokemon).then(function() {
+      pokemonRepository.addListItem(pokemon);
+    });
+
   });
 });
