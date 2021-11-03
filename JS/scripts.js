@@ -15,22 +15,22 @@ let pokemonRepository = (function () {
     let pokedex = document.querySelector('.pokemon-list');
     let pokedexEntry = document.createElement('li');
     pokedexEntry.classList.add('group-list-item', 'col-5', 'col-md-4', 'col-lg-4', 'col-xl-4', 'p-2');
-    let pokedexButton = document.createElement("button");
+    let pokedexButton = document.createElement('button');
     pokedexButton.innerText = pokemon.name;
     getType(pokemon);
-    pokedexButton.classList.add("pokemonButton", 'btn', 'btn-block');
+    pokedexButton.classList.add('pokemonButton', 'btn', 'btn-block');
     if(pokemon.types[0].type.name === 'grass') {
-      pokedexButton.classList.add("btn-grass");
+      pokedexButton.classList.add('btn-grass');
     } else if (pokemon.types[0].type.name === 'bug') {
-      pokedexButton.classList.add("btn-bug");
+      pokedexButton.classList.add('btn-bug');
     } else if (pokemon.types[0].type.name === 'dark') {
-      pokedexButton.classList.add("btn-dark");
+      pokedexButton.classList.add('btn-dark');
     } else if (pokemon.types[0].type.name === 'dragon') {
-      pokedexButton.classList.add("btn-dragon");
+      pokedexButton.classList.add('btn-dragon');
     } else if (pokemon.types[0].type.name === 'electric') {
       pokedexButton.classList.add('btn-electric');
     } else if (pokemon.types[0].type.name === 'fairy') {
-      pokedexButton.classList.add("btn-fairy");
+      pokedexButton.classList.add('btn-fairy');
     } else if (pokemon.types[0].type.name === 'fighting') {
       pokedexButton.classList.add('btn-fighting');
     } else if (pokemon.types[0].type.name === 'fire') {
@@ -128,7 +128,6 @@ let pokemonRepository = (function () {
       item.imageUrlShinyFront = details.sprites.front_shiny;
       item.imageUrlShinyBack = details.sprites.back_shiny;
       item.height = details.height;
-      item.types = details.types;
       item.abilities = details.abilities;
       item.weight = details.weight
     }).then(function () {
@@ -156,7 +155,6 @@ let pokemonRepository = (function () {
   function showModal(pokemon) {
   let modalBody = $('.modal-body');
   let modalTitle = $('.modal-title');
-  let modalHeader = $('.modal-header');
   let types = [];
   pokemon.types.forEach((item, i) => {
       types.push(' ' + pokemon.types[i].type.name);
@@ -180,10 +178,10 @@ let pokemonRepository = (function () {
   imageElementShinyBack.attr('src', pokemon.imageUrlShinyBack);
   let imageElementShinyFront = $('<img class="modal-img" style="width:50%">');
   imageElementShinyFront.attr('src', pokemon.imageUrlShinyFront);
-  let typeElement = $('<p class="col-6">' + "type: " + types + '</p>');
-  let abilityElement = $('<p class="col-6">' + "Abilities: " + abilities + '</p>')
-  let heightElement = $('<p class="col-6">' + "Height: " + pokemon.height + '</p>');
-  let weightElement = $('<p class="col-6">' + "Weight: " + pokemon.weight + '</p>');
+  let typeElement = $('<p class="col-6">' + 'type: ' + types + '</p>');
+  let abilityElement = $('<p class="col-6">' + 'Abilities: ' + abilities + '</p>')
+  let heightElement = $('<p class="col-6">' + 'Height: ' + pokemon.height + '</p>');
+  let weightElement = $('<p class="col-6">' + 'Weight: ' + pokemon.weight + '</p>');
 
   modalTitle.append(nameElement);
   modalBody.append(imageElementFront);
@@ -201,14 +199,14 @@ let pokemonRepository = (function () {
 
 let search = document.querySelector('.form-control');
 search.addEventListener('input', function() {
-  input = search.value.toLowerCase();
+  let input = search.value.toLowerCase();
   let poke = document.querySelectorAll('li');
 
   poke.forEach(function(pokemon) {
     if (pokemon.innerText.toLowerCase().indexOf(input) < 0) {
-      pokemon.style.display = "none";
+      pokemon.style.display = 'none';
     } else {
-      pokemon.style.display = "";
+      pokemon.style.display = '';
     }
   });
 
